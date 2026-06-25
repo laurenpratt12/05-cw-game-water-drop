@@ -3,23 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Water Drop Game</title>
+    <title>Water Rescue</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-wrapper">
-        <h1 class="game-title">Water Drop</h1>
-        <p class="game-tagline">Catch the good drops, avoid the bad ones!</p>
-        <div class="score-panel">
-            <div class="score">Score: <span id="score">0</span></div>
-            <div class="timer">Time: <span id="time">30</span>s</div>
-            <button id="start-btn">Start Game</button>
+    <div class="game-shell">
+        <div class="screen screen-start active" id="screen-start">
+            <div class="hero-card">
+                <img src="img/cw_logo.png" alt="charity water logo" class="hero-logo">
+                <h1>Water Rescue</h1>
+                <p class="hero-copy">Protect clean water and stop pollution before it reaches the jerry cans.</p>
+                <div class="hero-buttons">
+                    <button id="start-btn" class="primary-button">Play Now</button>
+                </div>
+                <div class="hero-meta">
+                    <span>Time limit: <strong>30s</strong></span>
+                    <span>Clean drops +15, polluted drops +20</span>
+                </div>
+            </div>
+            <div class="start-ambient"></div>
         </div>
-        
-        <div id="game-container">
+
+        <div class="screen screen-game hidden" id="screen-game">
+            <div class="game-frame">
+                <div class="game-hud" aria-label="game stats">
+                    <div class="hud-pill hud-score">
+                        <span>Score</span>
+                        <strong id="score">0</strong>
+                    </div>
+                    <div class="hud-pill hud-lives">
+                        <span>Lives</span>
+                        <strong id="lives">3</strong>
+                    </div>
+                    <div class="hud-pill hud-contamination">
+                        <span>Contamination</span>
+                        <div class="meter"><div id="contamination-meter"></div></div>
+                    </div>
+                    <div class="hud-pill hud-timer">
+                        <span>Timer</span>
+                        <strong id="timer">30s</strong>
+                    </div>
+                    <div class="hud-pill hud-level">
+                        <span>Level</span>
+                        <strong id="level">1</strong>
+                    </div>
+                </div>
+
+                <div class="playfield" id="playfield" aria-label="game field">
+                    <div class="background-layer"></div>
+                    <div class="wave-layer"></div>
+                    <div class="buckets" id="buckets" aria-hidden="true">
+                        <div class="jerry-can" data-can="A">
+                            <img src="img/water-can-transparent.png" alt="jerry can" class="jerry-image">
+                            <span class="can-tag">A</span>
+                        </div>
+                        <div class="jerry-can" data-can="B">
+                            <img src="img/water-can-transparent.png" alt="jerry can" class="jerry-image">
+                            <span class="can-tag">B</span>
+                        </div>
+                        <div class="jerry-can" data-can="C">
+                            <img src="img/water-can-transparent.png" alt="jerry can" class="jerry-image">
+                            <span class="can-tag">C</span>
+                        </div>
+                        <div class="jerry-can" data-can="D">
+                            <img src="img/water-can-transparent.png" alt="jerry can" class="jerry-image">
+                            <span class="can-tag">D</span>
+                        </div>
+                        <div class="jerry-can" data-can="E">
+                            <img src="img/water-can-transparent.png" alt="jerry can" class="jerry-image">
+                            <span class="can-tag">E</span>
+                        </div>
+                        <div class="jerry-can" data-can="F">
+                            <img src="img/water-can-transparent.png" alt="jerry can" class="jerry-image">
+                            <span class="can-tag">F</span>
+                        </div>
+                        <div class="jerry-can" data-can="G">
+                            <img src="img/water-can-transparent.png" alt="jerry can" class="jerry-image">
+                            <span class="can-tag">G</span>
+                        </div>
+                        <div class="jerry-can" data-can="H">
+                            <img src="img/water-can-transparent.png" alt="jerry can" class="jerry-image">
+                            <span class="can-tag">H</span>
+                        </div>
+                    </div>
+                    <div class="field-glow"></div>
+                    <div class="game-tip" id="game-tip">Click polluted drops. Let clean water land.</div>
+                </div>
+
+                <div class="game-actions">
+                    <button id="pause-btn" class="secondary-button">Pause</button>
+                    <button id="restart-btn" class="secondary-button">Restart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen screen-end hidden" id="screen-end">
+            <div class="end-card" id="end-card">
+                <img src="img/cw_logo.png" alt="charity water logo" class="end-logo">
+                <h1 id="end-title">You Win!</h1>
+                <p id="end-description">Clean water is safe and the jerry cans are full.</p>
+                <div class="end-stats">
+                    <div>
+                        <span>Final Score</span>
+                        <strong id="final-score">0</strong>
+                    </div>
+                </div>
+                <button id="play-again-btn" class="primary-button">Play Again</button>
+            </div>
+            <div class="end-overlay"></div>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
